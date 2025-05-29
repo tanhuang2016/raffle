@@ -1,0 +1,39 @@
+package dev.cat;
+
+import dev.cat.config.FxmlView;
+import dev.cat.config.StageManager;
+import javafx.application.Application;
+import javafx.stage.Stage;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.context.ConfigurableApplicationContext;
+
+public class RaffleApplication extends Application {
+
+    private static Stage stage;
+
+    private ConfigurableApplicationContext applicationContext;
+    private StageManager stageManager;
+
+    @Override
+    public void init() {
+        applicationContext = new SpringApplicationBuilder(Main.class).run();
+    }
+
+    @Override
+    public void stop() {
+        applicationContext.close();
+        stage.close();
+    }
+
+    @Override
+    public void start(Stage primaryStage) {
+        stage = primaryStage;
+        stageManager = applicationContext.getBean(StageManager.class, primaryStage);
+        showHomeScene();
+    }
+
+    private void showHomeScene() {
+        stageManager.switchScene(FxmlView.HOME);
+    }
+
+}
