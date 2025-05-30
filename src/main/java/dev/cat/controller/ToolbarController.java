@@ -6,13 +6,11 @@ import javafx.css.PseudoClass;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import org.springframework.context.annotation.Lazy;
-import org.springframework.stereotype.Component;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-@Component
+
 public class ToolbarController implements Initializable {
 
     @FXML
@@ -24,16 +22,11 @@ public class ToolbarController implements Initializable {
     @FXML
     private Button exitButton;
 
-    private final StageManager stageManager;
+    private final StageManager stageManager = StageManager.getInstance();
 
     private static final PseudoClass maximizeIcon = PseudoClass.getPseudoClass("max");
     private static final PseudoClass minimizeIcon = PseudoClass.getPseudoClass("min");
 
-    @Lazy
-    public ToolbarController(StageManager stageManager) {
-
-        this.stageManager = stageManager;
-    }
 
 
     @Override

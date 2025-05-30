@@ -22,7 +22,7 @@ public enum FxmlView {
 
         @Override
         public String getFxmlPath() {
-            return "/fxml/raffle.fxml";
+            return "/fxml/randomizer.fxml";
         }
     };
 

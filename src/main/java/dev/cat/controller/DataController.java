@@ -1,18 +1,18 @@
 package dev.cat.controller;
 
+import dev.cat.config.FxmlView;
 import dev.cat.config.StageManager;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextArea;
-import org.springframework.context.annotation.Lazy;
-import org.springframework.stereotype.Component;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
-@Component
+
 public class DataController implements Initializable {
 
     @FXML
@@ -24,16 +24,24 @@ public class DataController implements Initializable {
     @FXML
     private Button continueButton;
 
-    private final StageManager stageManager;
+    private final StageManager stageManager = StageManager.getInstance();
 
 
-    @Lazy
-    public DataController(StageManager stageManager) {
-        this.stageManager = stageManager;
+
+    @FXML
+    void goToStartScene() throws Exception {
+        if (!text.getText().isEmpty()) {
+            stageManager.collectUserData(text.getText()
+                    .lines()
+                    .collect(Collectors.toList()),
+                    checkBox.isSelected());
+            stageManager.switchToNextScene(FxmlView.START);
+        }
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
 
     }
 }

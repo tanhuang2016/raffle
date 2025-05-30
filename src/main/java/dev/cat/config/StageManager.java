@@ -1,24 +1,62 @@
 package dev.cat.config;
 
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCombination;
 import javafx.stage.Stage;
-import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
-@Component
 public class StageManager {
 
-    private final Stage primaryStage;
-    private final FxmlLoader fxmlLoader;
+    private Stage primaryStage;
 
-    public StageManager(FxmlLoader fxmlLoader,
-                        Stage primaryStage) {
-        this.primaryStage = primaryStage;
-        this.fxmlLoader = fxmlLoader;
+    private Set<String> userData = new HashSet<>();
+
+    private static volatile StageManager instance;
+
+    public static StageManager getInstance() {
+        StageManager localInstance = instance;
+        if (localInstance == null) {
+            synchronized (StageManager.class) {
+                localInstance = instance;
+                if (localInstance == null) {
+                    instance = localInstance = new StageManager();
+                }
+            }
+        }
+        return localInstance;
+    }
+
+
+    public Set<String> getUserData() {
+        return userData;
+    }
+
+    public void collectUserData(List<String> list, boolean needMasking) {
+        if (needMasking) {
+            int i = 0;
+            for (String email : list) {
+                if (email.contains("@")) {
+                    list.set(i, email.replaceAll(email.substring(
+                            email.indexOf('@')), "*****"));
+                } else {
+                    list.set(i, email);
+                }
+                i++;
+            }
+        }
+
+        userData.addAll(list);
+    }
+
+    public void setStage(Stage stage) {
+        this.primaryStage = stage;
     }
 
     public void switchScene(final FxmlView view) {
@@ -54,11 +92,17 @@ public class StageManager {
     private Parent loadRootNode(String fxmlPath) {
         Parent rootNode;
         try {
-            rootNode = fxmlLoader.load(fxmlPath);
+            rootNode = load(fxmlPath);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
         return rootNode;
+    }
+
+    public Parent load(String fxmlPath) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource(fxmlPath));
+        return loader.load();
     }
 
     public void switchToFullScreenMode() {
