@@ -55,6 +55,10 @@ public class StageManager {
         userData.addAll(list);
     }
 
+    public void clearUserData() {
+        userData.clear();
+    }
+
     public void setStage(Stage stage) {
         this.primaryStage = stage;
     }

@@ -141,10 +141,10 @@ public class RaffleController implements Initializable {
                 .getClassLoader()
                 .getResource("graphics/fireworks.gif")));
         topImage.setImage(fireworks);
-        topImage.setFitHeight(250);
+        topImage.setFitHeight(500);
         topImage.setPreserveRatio(true);
         bottomImage.setImage(fireworks);
-        bottomImage.setFitHeight(250);
+        bottomImage.setFitHeight(500);
         bottomImage.setPreserveRatio(true);
 
 

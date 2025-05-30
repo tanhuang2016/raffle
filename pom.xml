@@ -15,6 +15,39 @@
         <start-class>dev.cat.RaffleApplication</start-class>
     </properties>
 
+    <profiles>
+        <profile>
+            <id>native</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.graalvm.buildtools</groupId>
+                        <artifactId>native-maven-plugin</artifactId>
+                        <version>0.10.5</version>
+                        <extensions>true</extensions>
+                        <executions>
+                            <execution>
+                                <id>build-native</id>
+                                <goals>
+                                    <goal>compile-no-fork</goal>
+                                </goals>
+                                <phase>package</phase>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <imageName>raffle</imageName>
+                            <outputDirectory>target/native</outputDirectory>
+                            <mainClass>dev.cat.RaffleApplication</mainClass>
+                            <buildArgs>
+                                <buildArg>-H:ConfigurationFileDirectories=./agent-data</buildArg>
+                            </buildArgs>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
     <build>
         <plugins>
             <plugin>
