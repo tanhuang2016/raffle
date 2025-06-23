@@ -15,6 +15,8 @@
   }, {
     "pattern":"\\Qfxml/starter.fxml\\E"
   }, {
+    "pattern":"\\Qfxml/toolbar.fxml\\E"
+  }, {
     "pattern":"\\Qgraphics/fireworks.gif\\E"
   }, {
     "pattern":"\\Qstyles/styles.css\\E"
