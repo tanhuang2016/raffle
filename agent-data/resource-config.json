@@ -19,6 +19,14 @@
   }, {
     "pattern":"\\Qgraphics/fireworks.gif\\E"
   }, {
+    "pattern":"\\Qgraphics/exit.png\\E"
+  }, {
+    "pattern":"\\Qgraphics/home.png\\E"
+  }, {
+    "pattern":"\\Qgraphics/maximize.png\\E"
+  }, {
+    "pattern":"\\Qgraphics/minimize.png\\E"
+  }, {
     "pattern":"\\Qstyles/styles.css\\E"
   }, {
     "pattern":"java.base:\\Qjava/lang/Byte.class\\E"
