@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 
 public class RaffleApplication extends Application {
 
-    private static Stage stage;
+    public static Stage stage;
 
     private final StageManager stageManager = StageManager.getInstance();
 

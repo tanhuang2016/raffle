@@ -28,7 +28,6 @@ public class ToolbarController implements Initializable {
     private static final PseudoClass minimizeIcon = PseudoClass.getPseudoClass("min");
 
 
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         if (stageManager.isStageFullScreen()) {
@@ -41,6 +40,7 @@ public class ToolbarController implements Initializable {
 
     public void goToHomeScreen() {
         stageManager.clearUserData();
+        stageManager.setRaffleDurationMs(15000);
         stageManager.switchToNextScene(FxmlView.HOME);
     }
 

@@ -2,6 +2,7 @@ package dev.cat.controller;
 
 import dev.cat.config.StageManager;
 import javafx.animation.*;
+import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
@@ -20,7 +21,8 @@ import java.util.*;
 public class RaffleController implements Initializable {
 
     public static final int POTENTIAL_WINNERS_LIST = 300;
-    public static final int TARGET_DURATION_MS = 15000;
+    public static int TARGET_DURATION_MS = 15000;
+
     @FXML
     private Label dataLabel;
 
@@ -41,7 +43,6 @@ public class RaffleController implements Initializable {
     StringProperty name = new SimpleStringProperty();
 
     private final StageManager stageManager = StageManager.getInstance();
-
 
     @FXML
     void congratulate(ActionEvent event) {
@@ -65,6 +66,7 @@ public class RaffleController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         dataLabel.textProperty().bind(name);
         this.names = stageManager.getUserData();
+        TARGET_DURATION_MS = stageManager.getRaffleDurationMs();
         shuffleAndDisplayNames();
     }
 
@@ -91,7 +93,7 @@ public class RaffleController implements Initializable {
 
         double totalDuration = 0.0;
 
-        Timeline timeline = new Timeline();
+        Timeline rollingNames = new Timeline();
 
         Interpolator interpolator = new Interpolator() {
             @Override
@@ -106,28 +108,32 @@ public class RaffleController implements Initializable {
             totalDuration += dur;
             var index = i;
             KeyFrame frame = new KeyFrame(Duration.millis(totalDuration), e -> name.setValue(shuffledNames.get(index)));
-            timeline.getKeyFrames().add(frame);
+            rollingNames.getKeyFrames().add(frame);
             if (totalDuration > TARGET_DURATION_MS) {
                 break;
             }
         }
 
-        TranslateTransition transition = new TranslateTransition();
-        transition.setDuration(Duration.millis(TARGET_DURATION_MS));
-        transition.setNode(presentButton);
+        TranslateTransition raffleTransition = new TranslateTransition();
+        raffleTransition.setDuration(Duration.millis(TARGET_DURATION_MS));
+        raffleTransition.setNode(presentButton);
         presentButton.setVisible(false);
         presentButton.setDisable(true);
         repeatButton.setVisible(false);
         repeatButton.setDisable(true);
-        transition.setOnFinished(e -> {
-            presentButton.setVisible(true);
-            presentButton.setDisable(false);
-            repeatButton.setVisible(true);
-            repeatButton.setDisable(false);
+        raffleTransition.setOnFinished(e -> {
+            PauseTransition delay = new PauseTransition(Duration.millis(1000));
+            delay.setOnFinished(ev -> {
+                presentButton.setVisible(true);
+                presentButton.setDisable(false);
+                repeatButton.setVisible(true);
+                repeatButton.setDisable(false);
+            });
+            delay.play();
         });
-        transition.play();
+        raffleTransition.play();
 
-        timeline.play();
+        rollingNames.play();
     }
 
 
@@ -155,7 +161,5 @@ public class RaffleController implements Initializable {
         scale.setAutoReverse(true);
         scale.play();
     }
-
-
 }
 
