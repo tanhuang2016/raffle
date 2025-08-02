@@ -30,6 +30,7 @@ public class DataController implements Initializable {
 
     @FXML
     void goToStartScene() throws Exception {
+
         if (!text.getText().isEmpty()) {
             stageManager.collectUserData(text.getText()
                     .lines()

@@ -49,6 +49,10 @@
         -fx-background-color: #2FBEDD;
 }
 
+#durationLabel {
+    -fx-font-size: 24px;
+}
+
 #repeatButton {
         -fx-background-color: #C961B3;
         -fx-text-fill: white;

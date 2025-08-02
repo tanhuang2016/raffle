@@ -18,6 +18,9 @@ public class StageManager {
 
     private Set<String> userData = new HashSet<>();
 
+    //default duration
+    private int raffleDurationMs = 15000;
+
     private static volatile StageManager instance;
 
     public static StageManager getInstance() {
@@ -106,6 +109,7 @@ public class StageManager {
     public Parent load(String fxmlPath) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource(fxmlPath));
+        loader.setClassLoader(getClass().getClassLoader());
         return loader.load();
     }
 
@@ -125,4 +129,11 @@ public class StageManager {
         primaryStage.close();
     }
 
+    public int getRaffleDurationMs() {
+        return raffleDurationMs;
+    }
+
+    public void setRaffleDurationMs(int raffleDurationMs) {
+        this.raffleDurationMs = raffleDurationMs * 1000;
+    }
 }
