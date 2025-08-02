@@ -2,7 +2,6 @@ package dev.cat.controller;
 
 import dev.cat.config.StageManager;
 import javafx.animation.*;
-import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
@@ -21,7 +20,7 @@ import java.util.*;
 public class RaffleController implements Initializable {
 
     public static final int POTENTIAL_WINNERS_LIST = 300;
-    public static int TARGET_DURATION_MS = 15000;
+    public static int TARGET_DURATION_MS;
 
     @FXML
     private Label dataLabel;
@@ -66,7 +65,7 @@ public class RaffleController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         dataLabel.textProperty().bind(name);
         this.names = stageManager.getUserData();
-        TARGET_DURATION_MS = stageManager.getRaffleDurationMs();
+        setTargetDurationMs(stageManager.getRaffleDurationMs());
         shuffleAndDisplayNames();
     }
 
@@ -160,6 +159,18 @@ public class RaffleController implements Initializable {
         scale.setCycleCount(4);
         scale.setAutoReverse(true);
         scale.play();
+    }
+
+    public Set<String> getNames() {
+        return names;
+    }
+
+    public int getTargetDurationMs() {
+        return TARGET_DURATION_MS;
+    }
+
+    public void setTargetDurationMs(int targetDurationMs) {
+        TARGET_DURATION_MS = targetDurationMs;
     }
 }
 
