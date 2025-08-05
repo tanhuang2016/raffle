@@ -17,9 +17,9 @@
   }, {
     "pattern":"\\Qfxml/toolbar.fxml\\E"
   }, {
-    "pattern":"\\Qgraphics/fireworks.gif\\E"
-  }, {
     "pattern":"\\Qgraphics/exit.png\\E"
+  }, {
+    "pattern":"\\Qgraphics/fireworks.gif\\E"
   }, {
     "pattern":"\\Qgraphics/home.png\\E"
   }, {
@@ -60,6 +60,8 @@
     "pattern":"javafx.graphics:\\Qcom/sun/prism/es2/glsl/Texture_Color.frag\\E"
   }, {
     "pattern":"javafx.graphics:\\Qcom/sun/prism/es2/glsl/Texture_LinearGradient_PAD.frag\\E"
+  }, {
+    "pattern":"javafx.graphics:\\Qcom/sun/scenario/effect/impl/es2/glsl/LinearConvolveShadow_64.frag\\E"
   }, {
     "pattern":"jdk.internal.vm.compiler:\\Qorg/graalvm/compiler/hotspot/replacements/ClassGetHubNode.class\\E"
   }, {
@@ -137,9 +139,9 @@
   }]},
   "bundles":[{
     "name":"com.sun.javafx.tk.quantum.QuantumMessagesBundle",
-    "locales":[""]
+    "locales":["", "und"]
   }, {
     "name":"com/sun/javafx/scene/control/skin/resources/controls",
-    "locales":[""]
+    "locales":["", "und"]
   }]
 }
