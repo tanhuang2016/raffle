@@ -40,7 +40,7 @@ public class ToolbarController implements Initializable {
 
     public void goToHomeScreen() {
         stageManager.clearUserData();
-        stageManager.setRaffleDurationMs(15000);
+        stageManager.setRaffleDurationMs(15);
         stageManager.switchToNextScene(FxmlView.HOME);
     }
 

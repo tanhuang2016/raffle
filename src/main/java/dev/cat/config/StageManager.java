@@ -133,7 +133,7 @@ public class StageManager {
         return raffleDurationMs;
     }
 
-    public void setRaffleDurationMs(int raffleDurationMs) {
-        this.raffleDurationMs = raffleDurationMs * 1000;
+    public void setRaffleDurationMs(int raffleDurationS) {
+        this.raffleDurationMs = raffleDurationS * 1000;
     }
 }
