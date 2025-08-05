@@ -1,6 +1,9 @@
 name: Tests
 on:
   push:
+    paths-ignore:
+      - 'docs/**'
+      - '**/*.md'
     branches: [ main ]
 
 jobs:

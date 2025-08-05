@@ -3,6 +3,9 @@ name: Native Image
 on:
   workflow_dispatch:
   push:
+    paths-ignore:
+      - 'docs/**'
+      - '**/*.md'
     branches:
       - main
 
