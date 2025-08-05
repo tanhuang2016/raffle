@@ -98,10 +98,11 @@ public class ToolbarTest {
 
     @Test
     public void shouldGoWindowed(FxRobot robot) throws TimeoutException {
-        robot.interact(() -> {
-            stageManager.switchToFullScreenMode();
-        });
         Button btn = robot.lookup("#fullScreenButton").queryButton();
+        robot.interact(btn::fire);
+        WaitForAsyncUtils.waitFor(3, TimeUnit.SECONDS,
+                () -> stage.isFullScreen());
+
         robot.interact(btn::fire);
         WaitForAsyncUtils.waitFor(3, TimeUnit.SECONDS,
                 () -> !stage.isFullScreen());
