@@ -18,12 +18,11 @@ jobs:
             libasound2-dev libavcodec-dev libavformat-dev libavutil-dev \
             libgl-dev libgtk-3-dev libpango1.0-dev libxtst-dev
       - uses: actions/checkout@v4
-      - uses: graalvm/setup-graalvm@v1
+      - uses: actions/setup-java@v5
         with:
           distribution: 'liberica'
           java-version: '21'
           java-package: 'jdk+fx'
-          github-token: ${{ secrets.GITHUB_TOKEN }}
           cache: maven
       - name: Run tests (headless with Monocle)
         run: ./mvnw -B -Pheadless-ci -DskipNative=true test
