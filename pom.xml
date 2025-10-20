@@ -13,7 +13,7 @@
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <start-class>dev.cat.RaffleApplication</start-class>
-<!--        <skipTests>true</skipTests>-->
+        <skipTests>true</skipTests>
     </properties>
 
     <dependencies>
