@@ -21,7 +21,7 @@
                   <Font size="30.0" />
                </font>
             </Label>
-            <TextArea fx:id="text" layoutX="199.0" layoutY="49.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="55.0" text="520bab=="/>
+            <TextArea fx:id="text" layoutX="199.0" layoutY="49.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="55.0" text="520bab==1"/>
             <CheckBox fx:id="checkBox" layoutX="23.0" layoutY="286.0" mnemonicParsing="false" text="Mask emails" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0">
                <font>
                   <Font size="20.0" />
