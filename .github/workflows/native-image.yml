@@ -47,9 +47,9 @@ jobs:
           - os: 'ubuntu-latest'
             platform: 'linux-amd64'
           - os: 'macos-latest'
-            platform: 'darwin-arm64'
+            platform: 'macos-arm64'
           - os: 'macos-13'
-            platform: 'darwin-amd64'
+            platform: 'macos-amd64'
           - os: 'windows-latest'
             platform: 'win-amd64'
     runs-on: ${{matrix.os}}
@@ -85,11 +85,23 @@ jobs:
           filename: "raffle-${{ matrix.platform }}.zip"
           directory: target/native
 
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v0.0.1
+          release_name: Release v0.0.1🌈
+          draft: false
+          prerelease: false
+
       - name: Upload binaries to release
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          tag: ${{ github.ref }}
+          #tag: ${{ github.ref }}
+          tag: v0.0.1
           release_name: native-image
           file: "target/native/raffle-${{ matrix. platform }}.zip"
           overwrite: true
