@@ -42,8 +42,10 @@ jobs:
     needs: [ test_linux_headless ]
     strategy:
       matrix:
-        os: [ macos-latest, windows-latest, ubuntu-latest ]
+        os: [ macos-latest, macos-13,windows-latest, ubuntu-latest,ubuntu-22.04-arm ]
         include:
+          - os: 'ubuntu-22.04-arm'
+            platform: 'linux-arm64'
           - os: 'ubuntu-latest'
             platform: 'linux-amd64'
           - os: 'macos-latest'
@@ -84,17 +86,6 @@ jobs:
           type: 'zip'
           filename: "raffle-${{ matrix.platform }}.zip"
           directory: target/native
-
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: v0.0.1
-          release_name: Release v0.0.1🌈
-          draft: false
-          prerelease: false
 
       - name: Upload binaries to release
         uses: svenstaro/upload-release-action@v2
